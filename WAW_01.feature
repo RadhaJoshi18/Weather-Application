@@ -6,7 +6,7 @@ Feature: To verify search functioanlity of weather application.
 
    Scenario: To verify that search box accepts only valid City name.
    Given User is present on Home page of Weather application.
-   When User search for any valid <city name
+   When User search for any valid city name
     
    Then User should be able to search for the weather information for that city.
 
