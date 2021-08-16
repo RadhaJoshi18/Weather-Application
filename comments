@@ -1,0 +1,75 @@
+Reviewd by - Sushil 
+Date- 15 August 2021
+
+General comment:
+
+- All scenarios are not formatted properly
+- Open them in Intellij IDEA you can format them easily. check this document I have mentioned how to format the gherkin scenarios (https://docs.google.com/document/d/12N7N4qicROZnjdrmPemMG7Yjogq5-x8FGgkgzxNXNwU/edit)
+----------
+
+WAW01_Negative.feature
+
+- it's empty why ?????
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+WAW_02.feature
+
+Scenario: To verify that Tile should have date in Format-Day,DD-MM-YY Hr:Min
+        Given User is present on Home page of Weather application.
+        And User searches for the valid city name
+        When Tile for that perticular searched city display
+        Then it should contain the date in valid format <Day,DD-MM-YY Hr:Min> ----- <Day,DD-MM-YY Hr:Min> this won't be parameterized it's not scenario outline
+            | Day,DD-MM-YY Hr:Min          |
+            | Thursday, 5 August 202110:15 |
+
+
+-----------------------------------------------------------------------------------------------------------------
+WAW_04.feature
+
+
+Scenario Outline: To verify that After clicking on view more detail button user should see big tile containing weather detail in it.
+        Given User is present on Home page of Weather application
+        And search for the <City name>
+        When User click on the View More button on the webpage
+        Then user should see the big tile Containing <City name>,<Temprature>,<Date>,<Cloud information>,<Temprature type> on it.
+    Example:
+            | City name | Temprature | Date                         | Cloud information | Temprature type |
+            | Nagpure   | 30c        | Thursday, 5 August 202110:15 | Haze              | C               |
+            | Pune      | 30c        | Thursday, 5 August 202110:15 | Haze              | K               |
+            | Mumbai    | 30c        | Thursday, 5 August 202110:15 | Haze              | F               |
+
+
+
+It's Examples: not Example 
+
+
+ Scenario: To verify that on the big tile user should be able to see all the details of weather.
+        Given User is present on Home page of Weather application
+        And searches for the <City name>              ---------------------- it's not scenario outline you can't use <City name>. This won't treated as a paramter
+        When User click on the View More button on the webpage
+        Then User should see Visibility in KM,Wind Speed in Km/h,Pressure in hPa,Humidity in %,Sunrise time,Sunset time on the tile.
+
+-----------------------------------------------------------------------------------------------------------------
+
+WAW_05.feature
+
+You are trying to parameterized the data but it won't happen using Scenario you need sceanrio outline
+
+Scenario: To verify that Temperature information changes according to their unit
+        Given User is present on Home page of Weather application
+        And searches for the <City name>               --------------------------- wrong 
+        When User click on the View More button on the webpage
+        Then User should see 'Tempraure type' button on the Tile
+        When User Click on <Temprature Type> button               ----------------- if you want to do this then it should be scenario outline (check our old examples)
+            | Temprature Type |
+            | C               |
+            | K               |
+            | F               |
+        Then User should be able to see the tempraure in that perticular temprature unit along with value.
+
+
+        -----------------------------------------------------------------------------------------------------------------
+
+All other scenarios looks Good. Well Done!
